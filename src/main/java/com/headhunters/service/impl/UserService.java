@@ -20,31 +20,9 @@ public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private AlbumRepository albumRepository;
-    @Autowired
     private ProfileRepository profileRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-
-    public User addAlbum(Long album_id, Long user_id) {
-        User user = userRepository.getById(user_id);
-        Album album = albumRepository.getById(album_id);
-        List<Album> albumList = user.getAlbumList();
-        albumList.add(album);
-        user.setAlbumList(albumList);
-        return userRepository.save(user);
-    }
-
-
-    public User addProfile(Long profile_id, Long user_id) {
-        User user = userRepository.getById(user_id);
-        Profile profile = profileRepository.getById(profile_id);
-        user.setProfile(profile);
-        return userRepository.save(user);
-    }
-
-
 
     @Override
     public User save(User obj) {
@@ -55,6 +33,7 @@ public class UserService implements IUserService {
             // Make sure that password and confirmPassword match
             // We don't persist or show the confirmPassword
             obj.setConfirmPassword("");
+
             return userRepository.save(obj);
 
         }catch (Exception e){
@@ -73,7 +52,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id, String owner) {
         User user = findById(id);
         userRepository.delete(user);
     }
