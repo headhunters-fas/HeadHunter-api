@@ -1,9 +1,9 @@
 package com.headhunters.service.impl;
 
-import com.headhunters.exception.UsernameAlreadyExistsException;
 import com.headhunters.model.Album;
 import com.headhunters.model.Profile;
 import com.headhunters.model.User;
+import com.headhunters.exception.UsernameAlreadyExistsException;
 import com.headhunters.repository.AlbumRepository;
 import com.headhunters.repository.ProfileRepository;
 import com.headhunters.repository.UserRepository;
@@ -11,7 +11,6 @@ import com.headhunters.service.Interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 
@@ -24,10 +23,10 @@ public class UserService implements IUserService {
     private AlbumRepository albumRepository;
     @Autowired
     private ProfileRepository profileRepository;
-
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Override
+
+
     public User addAlbum(Long album_id, Long user_id) {
         User user = userRepository.getById(user_id);
         Album album = albumRepository.getById(album_id);
@@ -37,7 +36,7 @@ public class UserService implements IUserService {
         return userRepository.save(user);
     }
 
-    @Override
+
     public User addProfile(Long profile_id, Long user_id) {
         User user = userRepository.getById(user_id);
         Profile profile = profileRepository.getById(profile_id);
@@ -46,22 +45,21 @@ public class UserService implements IUserService {
     }
 
 
-    @Override
-    public User save(User user) {
 
+    @Override
+    public User save(User obj) {
         try{
-            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-            //Email has to be unique (exception)
-            user.setUsername(user.getUsername());
+            obj.setPassword(bCryptPasswordEncoder.encode(obj.getPassword()));
+            //Username has to be unique (exception)
+            obj.setUsername(obj.getUsername());
             // Make sure that password and confirmPassword match
             // We don't persist or show the confirmPassword
-            user.setConfirmPassword("");
-            return userRepository.save(user);
+            obj.setConfirmPassword("");
+            return userRepository.save(obj);
 
         }catch (Exception e){
-            throw new UsernameAlreadyExistsException("Email '"+user.getUsername()+"' already exists");
+            throw new UsernameAlreadyExistsException("Username '"+obj.getUsername()+"' already exists");
         }
-
     }
 
     @Override

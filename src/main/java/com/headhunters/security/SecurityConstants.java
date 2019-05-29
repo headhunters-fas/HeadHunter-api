@@ -1,6 +1,7 @@
 package com.headhunters.security;
 
 public class SecurityConstants {
+
     public static final String SING_UP_URLS = "/api/users/**";
     public static final String SECRET ="SecretKeyToGenJWTs";
     public static final String TOKEN_PREFIX= "Bearer ";

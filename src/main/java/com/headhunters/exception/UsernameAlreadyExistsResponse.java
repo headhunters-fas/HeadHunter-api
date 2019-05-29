@@ -1,6 +1,7 @@
 package com.headhunters.exception;
 
 public class UsernameAlreadyExistsResponse {
+
     private String username;
 
     public UsernameAlreadyExistsResponse(String username) {

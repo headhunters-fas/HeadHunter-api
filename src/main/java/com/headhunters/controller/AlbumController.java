@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/albums")
+@RequestMapping("/api/users/albums")
 @CrossOrigin
 public class AlbumController {
 

@@ -1,15 +1,17 @@
 package com.headhunters.security;
 
-
 import com.headhunters.model.User;
 import io.jsonwebtoken.*;
-import org.springframework.stereotype.Component;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
+
+import static com.headhunters.security.SecurityConstants.EXPIRATION_TIME;
+import static com.headhunters.security.SecurityConstants.SECRET;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import static com.headhunters.security.SecurityConstants.EXPIRATION_TIME;
-import static com.headhunters.security.SecurityConstants.SECRET;
+
 @Component
 public class JwtTokenProvider {
 

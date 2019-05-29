@@ -32,5 +32,4 @@ public class JWTLoginSuccessResponse {
                 ", token='" + token + '\'' +
                 '}';
     }
-
 }
