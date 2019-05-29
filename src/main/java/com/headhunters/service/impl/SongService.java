@@ -12,7 +12,6 @@ public class SongService implements ISongService {
     @Autowired
     private SongRepository songRepository;
 
-
     @Override
     public Song save(Song song) {
         return songRepository.save(song);
@@ -29,7 +28,7 @@ public class SongService implements ISongService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id, String owner) {
         Song song = findById(id);
         songRepository.delete(song);
     }

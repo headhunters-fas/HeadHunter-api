@@ -8,4 +8,9 @@ import org.springframework.stereotype.Repository;
 public interface AlbumRepository extends CrudRepository<Album, Long> {
 
     Album getById(Long id);
+
+    Iterable<Album> findAllByUsername(String username);
+
+    @Override
+    Iterable<Album> findAll();
 }
