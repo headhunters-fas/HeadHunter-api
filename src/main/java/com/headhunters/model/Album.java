@@ -23,7 +23,7 @@ public class Album {
     private String genre;
     private String description;
 
-    @OneToMany(mappedBy = "album", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "album", fetch = FetchType.LAZY)
     private List<Song> songList;
 
     @ManyToOne
