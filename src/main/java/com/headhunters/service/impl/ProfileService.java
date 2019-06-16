@@ -51,4 +51,8 @@ public class ProfileService implements IProfileService {
 
         return null;
     }
+
+    public Profile findByUser(String username){
+        return profileRepository.findByUsername(username);
+    }
 }

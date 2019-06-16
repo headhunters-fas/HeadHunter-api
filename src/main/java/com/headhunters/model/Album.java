@@ -7,13 +7,16 @@ import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="Album.listarDescendente", query="select a from Album a where a.username is null ORDER BY a.likes DESC"),
+        @NamedQuery(name="Album.listarPorGeneroDescendente", query="select a from Album a where a.genre =?1 ORDER BY a.likes DESC"),
+})
 public class Album {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message ="Title cannot be blank")
     private String title;
     private String artist;
     private String url;
@@ -23,7 +26,7 @@ public class Album {
     private String genre;
     private String description;
 
-    @OneToMany(mappedBy = "album", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "album", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Song> songList;
 
     @ManyToOne

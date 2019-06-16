@@ -11,6 +11,12 @@ public interface AlbumRepository extends CrudRepository<Album, Long> {
 
     Iterable<Album> findAllByUsername(String username);
 
-    @Override
-    Iterable<Album> findAll();
+    Iterable<Album> getByGenre(String genre);
+
+//    @Override
+////    Iterable<Album> findAll();
+
+    Iterable<Album>listarDescendente();
+
+    Iterable<Album>listarPorGeneroDescendente(String genre);
 }

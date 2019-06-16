@@ -56,6 +56,14 @@ public class AlbumService implements IAlbumService {
     }
 
     @Override
+    public Iterable<Album> getByGenre(String genre) {
+        if (genre != "") {
+            return albumRepository.listarPorGeneroDescendente(genre);
+        }
+        return albumRepository.listarDescendente();
+    }
+
+    @Override
     public Album findById(Long id) {
         return albumRepository.getById(id);
     }
@@ -103,9 +111,7 @@ public class AlbumService implements IAlbumService {
             return album;
 
         }catch (Exception e){
-            throw new RuntimeException("album ID '"+album.getTitle()+"' already exists");
+            throw new RuntimeException(e);
         }
     }
-
-
 }
