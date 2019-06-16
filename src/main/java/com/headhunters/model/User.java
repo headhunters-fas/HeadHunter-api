@@ -12,6 +12,9 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="User.listar", query="select u from User u inner join u.profile where u.profile.accountType='banda'")
+})
 public class User implements UserDetails {
 
     @Id
