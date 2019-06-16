@@ -1,10 +1,12 @@
 package com.headhunters.controller;
 
+import com.headhunters.model.Profile;
 import com.headhunters.payload.JWTLoginSuccessResponse;
 import com.headhunters.payload.LoginRequest;
 import com.headhunters.service.impl.MapValidationErrorService;
 import com.headhunters.model.User;
 import com.headhunters.security.JwtTokenProvider;
+import com.headhunters.service.impl.ProfileService;
 import com.headhunters.service.impl.UserService;
 import com.headhunters.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import static com.headhunters.security.SecurityConstants.TOKEN_PREFIX;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/users")

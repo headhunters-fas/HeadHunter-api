@@ -19,8 +19,10 @@ public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
-    private ProfileRepository profileRepository;
+    ProfileRepository profileRepository;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 

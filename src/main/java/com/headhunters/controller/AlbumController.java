@@ -5,6 +5,7 @@ import com.headhunters.service.Interfaces.IAlbumService;
 import com.headhunters.service.impl.AlbumService;
 import com.headhunters.service.impl.MapValidationErrorService;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
@@ -74,8 +75,8 @@ public class AlbumController  {
     // Public
 
     @GetMapping("/albums")
-    public Iterable<Album> getAllAlbums() {
-        return albumService.findAll();
+    public Iterable<Album> getAlbumsByGenre(@RequestParam String genre) {
+        return albumService.getByGenre(genre);
     }
 
     @PostMapping("/albums")
@@ -96,4 +97,16 @@ public class AlbumController  {
         return new ResponseEntity<Album>(newAlbum, HttpStatus.CREATED);
     }
 
+    @PatchMapping("/albums/{albumId}")
+    public ResponseEntity<String> updateAlbum(@RequestBody Map<String, Integer> field, @PathVariable Long albumId){
+
+        Album oldAlbum = albumService.findById(albumId);
+        field.forEach((k, v) -> {
+            oldAlbum.setLikes(v);
+        });
+
+        albumService.save(oldAlbum);
+
+        return new ResponseEntity<String>("Album updated", HttpStatus.OK);
+    }
 }
