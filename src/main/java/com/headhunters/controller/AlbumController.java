@@ -109,4 +109,11 @@ public class AlbumController  {
 
         return new ResponseEntity<String>("Album updated", HttpStatus.OK);
     }
+
+    @DeleteMapping("/albums/{albumId}")
+    public ResponseEntity<?> deleteAlbumById(@PathVariable Long albumId){
+        albumService.delete(albumId);
+
+        return new ResponseEntity<String>("album with ID: '"+albumId+"' was deleted", HttpStatus.OK);
+    }
 }
