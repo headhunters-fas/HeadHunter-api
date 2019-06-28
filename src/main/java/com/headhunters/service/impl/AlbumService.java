@@ -68,6 +68,11 @@ public class AlbumService implements IAlbumService {
         return albumRepository.getById(id);
     }
 
+    @Override
+    public void delete(Long albumId) {
+        albumRepository.delete(findById(albumId));
+    }
+
     //For a particular user
 
     @Override
